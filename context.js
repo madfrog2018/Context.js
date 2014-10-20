@@ -50,41 +50,46 @@ var context = context || (function () {
 		var subClass = (subMenu) ? ' dropdown-context-sub' : '',
 			compressed = options.compress ? ' compressed-context' : '',
 			$menu = $('<ul class="dropdown-menu dropdown-context' + subClass + compressed+'" id="dropdown-' + id + '"></ul>'),
-			linkTarget = '',
-        	i;
-        for(i = 0; i<data.length; i++) {
-        	if (typeof data[i].divider !== 'undefined') {
-				$menu.append('<li class="divider"></li>');
-			} else if (typeof data[i].header !== 'undefined') {
-				$menu.append('<li class="nav-header">' + data[i].header + '</li>');
-			} else {
-				if (typeof data[i].href == 'undefined') {
-					data[i].href = '#';
-				}
-				if (typeof data[i].target !== 'undefined') {
-					linkTarget = ' target="'+data[i].target+'"';
-				}
-				if (typeof data[i].subMenu !== 'undefined') {
-					$sub = ('<li class="dropdown-submenu"><a tabindex="-1" href="' + data[i].href + '">' + data[i].text + '</a></li>');
+			linkTarget = '', i;
+	        for(i = 0; i<data.length; i++) {
+	        	if (typeof data[i].divider !== 'undefined') {
+					$menu.append('<li class="divider"></li>');
+				} else if (typeof data[i].header !== 'undefined') {
+					$menu.append('<li class="nav-header">' + data[i].header + '</li>');
 				} else {
-					$sub = $('<li><a tabindex="-1" href="' + data[i].href + '"'+linkTarget+'>' + data[i].text + '</a></li>');
+					if (typeof data[i].href == 'undefined') {
+						data[i].href = '#';
+					}
+					if (typeof data[i].target !== 'undefined') {
+						linkTarget = ' target="'+data[i].target+'"';
+					}
+					if (typeof data[i].subMenu !== 'undefined') {
+						$sub = ('<li class="dropdown-submenu"><a tabindex="-1" href="' + data[i].href + '">' + data[i].text + '</a></li>');
+					} else {
+						$sub = $('<li><a tabindex="-1" href="' + data[i].href + '"'+linkTarget+'>' + data[i].text + '</a></li>');
+					}
+					if (typeof data[i].action !== 'undefined') {
+						$sub
+							.find('a')
+							.addClass('context-event')
+							.on('click', data[i].action);
+					}
+					$menu.append($sub);
+					if (typeof data[i].subMenu != 'undefined') {
+						var subMenuData = buildMenu(data[i].subMenu, id, true);
+						$menu.find('li:last').append(subMenuData);
+					}
 				}
-				if (typeof data[i].action !== 'undefined') {
-					$sub
-						.find('a')
-						.addClass('context-event')
-						.on('click', data[i].action);
-				}
-				$menu.append($sub);
-				if (typeof data[i].subMenu != 'undefined') {
-					var subMenuData = buildMenu(data[i].subMenu, id, true);
-					$menu.find('li:last').append(subMenuData);
+				if (typeof options.filter == 'function') {
+					options.filter($menu.find('li:last'));
 				}
 			}
-			if (typeof options.filter == 'function') {
-				options.filter($menu.find('li:last'));
+		$sub.click(function(){
+		
+			if($sub.hasClass("dropdown-submenu")){
+				alert("this is a parent!");
 			}
-		}
+		});
 		return $menu;
 	}
 
