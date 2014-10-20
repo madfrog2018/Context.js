@@ -8,17 +8,14 @@ $(document).ready(function(){
 		{text: 'The Script', subMenu: [
 			{header: 'Requires jQuery'},
 			{text: 'context.js', href: '', target:'_blank', action: function(e){
-				_gaq.push(['_trackEvent', 'ContextJS Download', this.pathname, this.innerHTML]);
 			}}
 		]},
 		{text: 'The Styles', subMenu: [
 
 			{text: 'context.bootstrap.css', href: '', target:'_blank', action: function(e){
-				_gaq.push(['_trackEvent', 'ContextJS Bootstrap CSS Download', this.pathname, this.innerHTML]);
 			}},
 
 			{text: 'context.standalone.css', href: '', target:'_blank', action: function(e){
-				_gaq.push(['_trackEvent', 'ContextJS Standalone CSS Download', this.pathname, this.innerHTML]);
 			}}
 		]},
 		{divider: true},
