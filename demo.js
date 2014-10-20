@@ -7,17 +7,17 @@ $(document).ready(function(){
 		{header: 'Download'},
 		{text: 'The Script', subMenu: [
 			{header: 'Requires jQuery'},
-			{text: 'context.js', href: 'http://lab.jakiestfu.com/contextjs/context.js', target:'_blank', action: function(e){
+			{text: 'context.js', href: '', target:'_blank', action: function(e){
 				_gaq.push(['_trackEvent', 'ContextJS Download', this.pathname, this.innerHTML]);
 			}}
 		]},
 		{text: 'The Styles', subMenu: [
 
-			{text: 'context.bootstrap.css', href: 'http://lab.jakiestfu.com/contextjs/context.bootstrap.css', target:'_blank', action: function(e){
+			{text: 'context.bootstrap.css', href: '', target:'_blank', action: function(e){
 				_gaq.push(['_trackEvent', 'ContextJS Bootstrap CSS Download', this.pathname, this.innerHTML]);
 			}},
 
-			{text: 'context.standalone.css', href: 'http://lab.jakiestfu.com/contextjs/context.standalone.css', target:'_blank', action: function(e){
+			{text: 'context.standalone.css', href: '', target:'_blank', action: function(e){
 				_gaq.push(['_trackEvent', 'ContextJS Standalone CSS Download', this.pathname, this.innerHTML]);
 			}}
 		]},
